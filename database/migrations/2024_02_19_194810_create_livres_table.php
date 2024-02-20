@@ -11,27 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('livres', function (Blueprint $table) {
-            $table->id();
-            $table->string("isbn", 100)->unique();
-            $table->string("titre", 100)->unique();
-            $table->integer("annedition");
-            $table->double("prix");
-            $table->integer("qtestock");
-            $table->string("couverture");
-            $table->unsignedBigInteger("specialite_id"); // Change column name to specialite_id
-            $table->foreign('specialite_id')
-                ->references('id')
-                ->on('specialites')
-                ->onDelete('restrict');
-            $table->unsignedBigInteger("editeur_id"); // Change column name to editeur_id
-            $table->foreign('editeur_id')
-                ->references('id')
-                ->on('editeurs')
-                ->onDelete('restrict');
-            $table->timestamps();
-        });
+    Schema::create('livres', function (Blueprint $table) {
+    $table->id();
+    $table->string("isbn",100)->unique;
+    $table->string("titre",100)->unique;
+    $table->integer("annedition");
+    $table->double("prix");
+    $table->integer("qtestock");
+    $table->string("couverture");
+    $table->unsignedBigInteger("specialite_id");
+    $table->foreign('specialite_id')
+    ->references('id')
+    ->on('specialites')
+    ->onDelete('restrict');
+    $table->unsignedBigInteger("editeur_id");
+    $table->foreign('editeur_id')
+    ->references('id')
+    ->on('editeurs')
+    ->onDelete('restrict');
+    $table->timestamps();
+    });
     }
+
 
     /**
      * Reverse the migrations.
